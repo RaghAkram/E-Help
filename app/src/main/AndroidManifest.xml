@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.e_help">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.EHelp">
+        <activity android:name=".Admin.AcceptUserActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Admin.AdminMainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Team.OpportunitiesOfferedActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Team.JoinRequestsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Team.AddMemberActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Team.TeamMembersActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Volunteer.Activity.DetailesImmediateHelpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Volunteer.Activity.ShowImmediateHelpActivity"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity android:name=".Volunteer.Activity.AddImmediateHelpActivity" />
+        <activity
+            android:name=".User.FirstActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Volunteer.MainActivity" />
+        <activity
+            android:name=".User.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".User.EmailConfirmActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".User.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Opportunities.AddOpportunitiesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Opportunities.DetailesOpportunitiesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Team.EditProfileLeaderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Volunteer.Activity.VolunteerTeamsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Volunteer.Activity.TeamJoinActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Volunteer.Activity.DetailesCheckSiteActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Team.OpportunitiesParticipantsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Organisation.EditProfileOrgActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Team.AddTaskActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Volunteer.Activity.MyTaskTeamActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Admin.OpportunitiesAcceptActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Volunteer.Activity.EditProfileVolunteerActivity"
+            android:screenOrientation="portrait"/>
+
+        <service
+            android:name=".Notification.Notifications.MyFirebaseMessaging"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name=".Notification.Notifications.Receiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action
+                    android:name="android.intent.action.BOOT_COMPLETED"
+                    android:priority="999" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "525294041539",
+    "project_id": "ehelp-24142",
+    "storage_bucket": "ehelp-24142.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525294041539:android:90223acefb17d5f031e576",
+        "android_client_info": {
+          "package_name": "com.e_help"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525294041539-kdr3bd4f3t3hquc09a0j1sq6scnrhn54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5ZT8TeTo4eCuQrrZYq_5hRVyNDxYSwWs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525294041539-kdr3bd4f3t3hquc09a0j1sq6scnrhn54.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,804 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:layoutDirection="rtl"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:weightSum="3">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/orange" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+
+                    android:layout_gravity="center"
+
+                    android:background="@drawable/logo" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_gravity="center"
+
+                android:layout_weight="1"
+                android:background="@color/orange" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_15sdp"
+            android:background="@drawable/buttonshape_blue"
+            android:text="التسجيل"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp" />
+
+        <RadioGroup
+            android:id="@+id/select_type_rg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+
+            <RadioButton
+                android:id="@+id/radio0"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radio_flat_selector"
+                android:button="@android:color/transparent"
+                android:checked="true"
+                android:gravity="center"
+                android:paddingLeft="@dimen/_16sdp"
+                android:paddingTop="@dimen/_3sdp"
+                android:paddingRight="@dimen/_16sdp"
+                android:paddingBottom="@dimen/_3sdp"
+                android:text="المتطوع"
+                android:textColor="@color/black" />
+
+            <RadioButton
+                android:id="@+id/radio1"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radio_flat_selector"
+                android:button="@android:color/transparent"
+                android:gravity="center"
+                android:paddingLeft="@dimen/_16sdp"
+                android:paddingTop="@dimen/_3sdp"
+                android:paddingRight="@dimen/_16sdp"
+                android:paddingBottom="@dimen/_3sdp"
+                android:text="الفريق"
+                android:textColor="@color/black" />
+
+            <RadioButton
+                android:id="@+id/radio2"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radio_flat_selector"
+                android:button="@android:color/transparent"
+                android:gravity="center"
+                android:paddingLeft="@dimen/_16sdp"
+                android:paddingTop="@dimen/_3sdp"
+                android:paddingRight="@dimen/_16sdp"
+                android:paddingBottom="@dimen/_3sdp"
+                android:text="المنظمة"
+                android:textColor="@color/black" />
+        </RadioGroup>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <RelativeLayout
+                    android:id="@+id/r0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bk"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_10sdp">
+
+
+                        <LinearLayout
+                            android:id="@+id/a1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:orientation="vertical"
+                            android:visibility="visible">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:weightSum="2">
+
+                                <EditText
+                                    android:id="@+id/first_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginEnd="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="start|center_vertical"
+                                    android:hint="الاسم الاول"
+                                    android:inputType="textPersonName"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <EditText
+                                    android:id="@+id/last_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginStart="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="start|center_vertical"
+                                    android:hint="الاسم الاخير"
+                                    android:inputType="textPersonName"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:weightSum="2">
+
+                                <EditText
+                                    android:id="@+id/phone_num"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginEnd="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="رقم الجوال"
+                                    android:inputType="phone"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <EditText
+                                    android:id="@+id/id_num"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginStart="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="start|center_vertical"
+                                    android:hint="رقم الهوية الوطنية"
+                                    android:inputType="number"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp">
+
+                                <EditText
+                                    android:id="@+id/email"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="البريد الالكتروني"
+                                    android:inputType="textEmailAddress"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:weightSum="2">
+
+                                <EditText
+                                    android:id="@+id/password"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginEnd="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="كلمة المرور"
+                                    android:inputType="textPassword"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <EditText
+                                    android:id="@+id/confirm_password"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginStart="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="تأكيد كلمة المرور"
+                                    android:inputType="textPassword"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:weightSum="2">
+
+                                <EditText
+                                    android:id="@+id/date_of_birth"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginEnd="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:focusable="false"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="تاريخ الميلاد"
+                                    android:inputType="date"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_7sdp"
+                                    android:layout_weight="1"
+
+                                    android:background="@drawable/rounded_edittext_gray">
+
+                                    <Spinner
+                                        android:id="@+id/gender"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:gravity="start|center_vertical"
+                                        android:hint="الجنس"
+                                        android:padding="@dimen/_5sdp"
+                                        android:textSize="@dimen/_12sdp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp">
+
+                                <EditText
+                                    android:id="@+id/Voluntary_interests"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="الاهتمامات التطوعية"
+                                    android:inputType="text"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp">
+
+                                <EditText
+                                    android:id="@+id/Educational_level"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="المستوى التعليمي"
+                                    android:inputType="text"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+
+                                android:background="@drawable/rounded_edittext_gray">
+
+                                <Spinner
+                                    android:id="@+id/city_vol"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="المدينة"
+                                    android:inputType="text"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                            </LinearLayout>
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/buttonRegister0"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40sdp"
+                                android:layout_margin="@dimen/_15sdp"
+                                android:background="@color/orange"
+                                android:text="تسجيل"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_16sdp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/r1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@drawable/bk"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_10sdp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:orientation="vertical"
+                            android:visibility="visible">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:weightSum="2">
+
+                                <EditText
+                                    android:id="@+id/name_team"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginEnd="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="start|center_vertical"
+                                    android:hint="اسم الفريق"
+                                    android:inputType="textPersonName"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <EditText
+                                    android:id="@+id/leader_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginStart="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="start|center_vertical"
+                                    android:hint="اسم القائد"
+                                    android:inputType="textPersonName"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:weightSum="2">
+
+                                <EditText
+                                    android:id="@+id/phone_num_team"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginEnd="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="رقم الجوال"
+                                    android:inputType="phone"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <EditText
+                                    android:id="@+id/id_num_leader"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginStart="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="start|center_vertical"
+                                    android:hint="رقم الهوية الوطنية"
+                                    android:inputType="number"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp">
+
+                                <EditText
+                                    android:id="@+id/email_team"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="البريد الالكتروني"
+                                    android:inputType="textEmailAddress"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:weightSum="2">
+
+                                <EditText
+                                    android:id="@+id/password_team"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginEnd="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="كلمة المرور"
+                                    android:inputType="textPassword"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <EditText
+                                    android:id="@+id/confirm_password_team"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginStart="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="تأكيد كلمة المرور"
+                                    android:inputType="textPassword"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:background="@drawable/rounded_edittext_gray">
+
+                                <Spinner
+                                    android:id="@+id/the_field"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="المجال"
+                                    android:inputType="text"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp">
+
+                                <EditText
+                                    android:id="@+id/social_media"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="اسم حساب التواصل الاجتماعي"
+                                    android:inputType="text"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+
+                                android:background="@drawable/rounded_edittext_gray">
+
+                                <Spinner
+                                    android:id="@+id/city"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="المدينة"
+                                    android:inputType="text"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                            </LinearLayout>
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/buttonRegister1"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40sdp"
+                                android:layout_margin="@dimen/_15sdp"
+                                android:background="@color/orange"
+                                android:text="تسجيل"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_16sdp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/r2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@drawable/bk"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_10sdp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:weightSum="2">
+
+                                <EditText
+                                    android:id="@+id/name_entity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginEnd="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="start|center_vertical"
+                                    android:hint="اسم الجهة"
+                                    android:inputType="textPersonName"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_7sdp"
+                                    android:layout_weight="1"
+
+                                    android:background="@drawable/rounded_edittext_gray">
+
+                                    <Spinner
+                                        android:id="@+id/entity_type"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:gravity="start|center_vertical"
+                                        android:hint="حكومية ام خاصة"
+                                        android:inputType="textPersonName"
+                                        android:padding="@dimen/_5sdp"
+                                        android:textSize="@dimen/_12sdp" />
+
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:weightSum="2">
+
+                                <EditText
+                                    android:id="@+id/phone_num_entity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginEnd="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="رقم الجوال"
+                                    android:inputType="phone"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <EditText
+                                    android:id="@+id/id_num_entity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginStart="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="start|center_vertical"
+                                    android:hint="رقم الترخيص"
+                                    android:inputType="number"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp">
+
+                                <EditText
+                                    android:id="@+id/email_team_entity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="البريد الالكتروني"
+                                    android:inputType="textEmailAddress"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:weightSum="2">
+
+                                <EditText
+                                    android:id="@+id/password_entity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginEnd="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="كلمة المرور"
+                                    android:inputType="textPassword"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <EditText
+                                    android:id="@+id/confirm_password_entity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginStart="@dimen/_7sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rounded_edittext_gray"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="تأكيد كلمة المرور"
+                                    android:inputType="textPassword"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:background="@drawable/rounded_edittext_gray">
+
+                                <Spinner
+                                    android:id="@+id/the_field_entity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="المجال"
+                                    android:inputType="text"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+
+                                android:background="@drawable/rounded_edittext_gray">
+
+                                <Spinner
+                                    android:id="@+id/city_entity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:gravity="right|center_vertical"
+                                    android:hint="المدينة"
+                                    android:inputType="text"
+                                    android:padding="@dimen/_5sdp"
+                                    android:textSize="@dimen/_12sdp" />
+
+                            </LinearLayout>
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/buttonRegister2"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40sdp"
+                                android:layout_margin="@dimen/_15sdp"
+                                android:background="@color/orange"
+                                android:text="تسجيل"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_16sdp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+
+
+</RelativeLayout>
+

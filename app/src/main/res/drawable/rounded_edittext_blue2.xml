@@ -1,0 +1,22 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+
+        <shape android:shape="rectangle">
+
+            <gradient
+                android:angle="90"
+                android:centerX="100%"
+
+                android:centerColor="#E7FBFF"
+                android:startColor="#E7FBFF"
+                android:endColor="#E7FBFF"
+                />
+            <padding
+                android:left="0dp"
+                android:top="0dp"
+                android:right="0dp"
+                android:bottom="0dp"
+                />
+        </shape>
+    </item>
+</selector>

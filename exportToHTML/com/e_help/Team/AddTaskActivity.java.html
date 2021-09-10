@@ -1,0 +1,247 @@
+<html>
+<head>
+<title>AddTaskActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #808080; font-style: italic;}
+.s3 { color: #008000; font-weight: bold;}
+.s4 { color: #0000ff;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+AddTaskActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.e_help.Team;
+
+<span class="s0">import </span>android.app.DatePickerDialog;
+<span class="s0">import </span>android.app.ProgressDialog;
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.content.SharedPreferences;
+<span class="s0">import </span>android.graphics.Color;
+<span class="s0">import </span>android.net.Uri;
+<span class="s0">import </span>android.os.Bundle;
+<span class="s0">import </span>android.text.TextUtils;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.widget.AdapterView;
+<span class="s0">import </span>android.widget.ArrayAdapter;
+<span class="s0">import </span>android.widget.DatePicker;
+<span class="s0">import </span>android.widget.EditText;
+<span class="s0">import </span>android.widget.Spinner;
+<span class="s0">import </span>android.widget.TextView;
+<span class="s0">import </span>android.widget.Toast;
+
+<span class="s0">import </span>androidx.annotation.NonNull;
+<span class="s0">import </span>androidx.appcompat.app.AppCompatActivity;
+
+<span class="s0">import </span>com.e_help.Model.MemberModel;
+<span class="s0">import </span>com.e_help.Model.TaskModel;
+<span class="s0">import </span>com.e_help.Model.User;
+<span class="s0">import </span>com.e_help.Model.dataModel2;
+<span class="s0">import </span>com.e_help.R;
+<span class="s0">import </span>com.e_help.User.RegisterActivity;
+<span class="s0">import </span>com.google.android.gms.tasks.OnCompleteListener;
+<span class="s0">import </span>com.google.android.gms.tasks.Task;
+<span class="s0">import </span>com.google.firebase.database.DataSnapshot;
+<span class="s0">import </span>com.google.firebase.database.DatabaseError;
+<span class="s0">import </span>com.google.firebase.database.DatabaseReference;
+<span class="s0">import </span>com.google.firebase.database.FirebaseDatabase;
+<span class="s0">import </span>com.google.firebase.database.ValueEventListener;
+
+<span class="s0">import </span>java.text.SimpleDateFormat;
+<span class="s0">import </span>java.util.ArrayList;
+<span class="s0">import </span>java.util.Calendar;
+<span class="s0">import </span>java.util.List;
+<span class="s0">import </span>java.util.Locale;
+
+<span class="s0">public class </span>AddTaskActivity <span class="s0">extends </span>AppCompatActivity {
+    <span class="s2">//فقط عرفناهم .. عشان اقدر اوصلهم</span>
+    EditText title, description, date;
+    DatabaseReference mdatabaseTeamMembers,referenceTask;
+    <span class="s2">//عندنا2 داتابيس .. عشان بنعرض بيانات من واحد وبنخزن في التاني</span>
+    <span class="s2">//نعرض التيم ميمبرز للفريق</span>
+    <span class="s2">//عشان نخزن التاسك</span>
+    String Uid;
+    ProgressDialog dialogM;
+
+    @Override
+    <span class="s0">protected void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_task);
+        SharedPreferences preferences = getSharedPreferences(<span class="s3">&quot;login&quot;</span>, MODE_PRIVATE); <span class="s2">// لجلب الداتا المخزنة</span>
+        Uid = preferences.getString(<span class="s3">&quot;Uid&quot;</span>, <span class="s3">&quot;&quot;</span>);<span class="s2">// جيب الداتا المخزنة&quot;id لقائد الفريق&quot; وبناءً عليه ح يجبلي داتا الفريق فقط</span>
+        dialogM = <span class="s0">new </span>ProgressDialog(<span class="s0">this</span>);
+        dialogM.setMessage(<span class="s3">&quot;جاري الحفظ يرجى الانتظار ...&quot;</span>);
+        dialogM.setIndeterminate(<span class="s0">true</span>);
+        findViewById(R.id.arrow).setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            @Override
+            <span class="s0">public void </span>onClick(View v) {
+                finish();
+            }
+        });
+
+        title = (EditText) findViewById(R.id.title);
+        description = (EditText) findViewById(R.id.description);
+        date = (EditText) findViewById(R.id.date);
+        getTime(date);
+        mdatabaseTeamMembers = FirebaseDatabase.getInstance(<span class="s3">&quot;https://ehelp-24142-default-rtdb.firebaseio.com/&quot;</span>).
+                getReference().child(<span class="s3">&quot;TeamMembers&quot;</span>).child(Uid); <span class="s2">// تعريف الجدول</span>
+        referenceTask = FirebaseDatabase.getInstance(<span class="s3">&quot;https://ehelp-24142-default-rtdb.firebaseio.com/&quot;</span>)
+                .getReference().child(<span class="s3">&quot;Task&quot;</span>).child(Uid);<span class="s2">// تعريف الجدول</span>
+        findViewById(R.id.add_btn).setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            @Override
+            <span class="s0">public void </span>onClick(View v) {
+                <span class="s0">if </span>(validation()) {
+                    dialogM.show();
+
+                    String key = referenceTask.push().getKey();
+
+                    TaskModel taskModel = <span class="s0">new </span>TaskModel(key, Uid, title.getText().toString(),
+                            description.getText().toString(), date.getText().toString(), selectedNameUser, selectedUser);
+                    referenceTask.child(key).setValue(taskModel).addOnCompleteListener(<span class="s0">new </span>OnCompleteListener&lt;Void&gt;() {
+                        @Override
+                        <span class="s0">public void </span>onComplete(@NonNull Task&lt;Void&gt; task) {
+                            
+                            dialogM.dismiss();
+                            Toast.makeText(AddTaskActivity.<span class="s0">this</span>, <span class="s3">&quot;تمت الاضافة بنجاح&quot;</span>, Toast.LENGTH_SHORT).show();
+
+                            title.setText(<span class="s3">&quot;&quot;</span>);
+                            description.setText(<span class="s3">&quot;&quot;</span>);
+                            date.setText(<span class="s3">&quot;&quot;</span>);
+
+                        }
+                    });
+                }
+            }
+        });
+        GetUser();
+
+    }
+
+    <span class="s0">public boolean </span>validation() {
+        <span class="s0">if </span>(TextUtils.isEmpty(title.getText().toString().trim())) {
+            Toast.makeText(AddTaskActivity.<span class="s0">this</span>, <span class="s3">&quot;أدخل العنوان&quot;</span>, Toast.LENGTH_SHORT).show();
+            title.requestFocus();
+            <span class="s0">return false</span>;
+        } <span class="s0">else if </span>(TextUtils.isEmpty(description.getText().toString().trim())) {
+            Toast.makeText(AddTaskActivity.<span class="s0">this</span>, <span class="s3">&quot;أدخل الوصف&quot;</span>, Toast.LENGTH_SHORT).show();
+            description.requestFocus();
+            <span class="s0">return false</span>;
+        } <span class="s0">else if </span>(TextUtils.isEmpty(date.getText().toString().trim())) {
+            Toast.makeText(AddTaskActivity.<span class="s0">this</span>, <span class="s3">&quot;أدخل موعد الانتهاء&quot;</span>, Toast.LENGTH_SHORT).show();
+            date.requestFocus();
+            <span class="s0">return false</span>;
+        }
+        <span class="s0">return true</span>;
+    }
+
+    String selectedUser = <span class="s3">&quot;0&quot;</span>;
+    String selectedNameUser = <span class="s3">&quot;&quot;</span>;
+
+    <span class="s0">public void </span>GetUser() {
+        <span class="s2">//ربط السبينر من xml الى الجافا</span>
+        Spinner userSp = (Spinner) findViewById(R.id.sp_user);
+        <span class="s2">//عملنا list وهي القائمة التي تحتوي على العناصر اللي حنعرضها في السبينر من نوع array</span>
+        <span class="s2">//نعبي فيها اعضاء الفريق</span>
+        List&lt;dataModel2&gt; listModels = <span class="s0">new </span>ArrayList&lt;&gt;();
+
+        <span class="s2">// (1)</span>
+        listModels.add(<span class="s0">new </span>dataModel2(<span class="s3">&quot;0&quot;</span>, <span class="s3">&quot;تعيين الجميع&quot;</span>)); <span class="s2">// اول عنصر ضفناه - تعيين الجميع واعطيناها id=0</span>
+        <span class="s2">//بنروح نجيب كل اعضاء الفريق من الداتا بيس ونخزنها في listModels</span>
+        mdatabaseTeamMembers.addValueEventListener(<span class="s0">new </span>ValueEventListener() {
+            @Override
+            <span class="s0">public void </span>onDataChange(DataSnapshot dataSnapshot) {
+                <span class="s0">if </span>(dataSnapshot.exists()) { <span class="s2">// لو الداتا اللي نبغاها موجودة &quot;يكون في اعضاء للفريق&quot;</span>
+                    <span class="s0">for </span>(DataSnapshot snapshot : dataSnapshot.getChildren()) { <span class="s2">// ناخد سناب شوت من الداتا ونقسمها على شكل مودل كالعادة</span>
+                        MemberModel user = snapshot.getValue(MemberModel.<span class="s0">class</span>);
+                        <span class="s0">if </span>(user.isAccepted())<span class="s2">//لو كان اليوزر مقبول في الفريق</span>
+                            listModels.add(<span class="s0">new </span>dataModel2(user.getId_user(), user.getFname_user() + <span class="s3">&quot; &quot; </span>+ user.getLname_user()));
+                        <span class="s2">//بنخزن اليوزر في listModels بس بنعطيها شكل معين عشان يعرضها السبينر</span>
+                        <span class="s2">// لاننا فقط نبغى id و name = لان السبينر تاخد String فقط</span>
+                    }
+                }
+
+                <span class="s2">// انشأنا 2 array واعطيناها نفس الحجم لـlist model</span>
+                <span class="s2">//عشان نبغى نقسم البيانات الموجودة في list model</span>
+                <span class="s2">//array= id و array=name</span>
+                <span class="s2">//لان السبينر بياخد فقط array من نوع String يعني فقط ح نحتاج array for name</span>
+                <span class="s0">final </span>String[] name = <span class="s0">new </span>String[listModels.size()];
+                <span class="s0">final </span>String[] idList = <span class="s0">new </span>String[listModels.size()];
+                <span class="s2">//جبنا كل الداتا اللي في listModel وعبيناهم في array</span>
+                <span class="s0">for </span>(<span class="s0">int </span>i = <span class="s4">0</span>; i &lt; listModels.size(); i++) {
+                    name[i] = listModels.get(i).getName();
+                    idList[i] = listModels.get(i).getId() + <span class="s3">&quot;&quot;</span>;
+                }
+                <span class="s2">// الآن يجب علينا أن نقوم بإنشاء Adapter بسيط (زي ما نسوي في RecyclerView) ليقوم بعرض هذه العناصر في Spinner</span>
+                <span class="s2">// وهو عبارة عن ArrayAdapter يقوم بأخذ :</span>
+                <span class="s2">// 1- Context</span>
+                <span class="s2">// شكل العنصر الذي سيتم عرضه (ملف xml) وهنا array=name لانها سترينق</span>
+                <span class="s2">//وأخيراً الليست او Array</span>
+                ArrayAdapter adapterPiece = <span class="s0">new </span>ArrayAdapter&lt;String&gt;(AddTaskActivity.<span class="s0">this</span>, android.R.layout.simple_spinner_dropdown_item, name);
+
+                userSp.setAdapter(adapterPiece);
+                userSp.setOnItemSelectedListener(<span class="s0">new </span>AdapterView.OnItemSelectedListener() {
+                    @Override
+                    <span class="s0">public void </span>onItemSelected(AdapterView&lt;?&gt; parent, View view, <span class="s0">int </span>position, <span class="s0">long </span>id) {
+                        Object item = parent.getItemAtPosition(position);
+                        <span class="s0">try </span>{
+                            ((TextView) view).setTextColor(Color.BLACK);
+                        } <span class="s0">catch </span>(Exception ex) {
+                        }
+                        <span class="s0">if </span>(item != <span class="s0">null</span>) {
+                            selectedUser = idList[position];
+                            selectedNameUser = name[position];
+                        }
+                    }
+
+                    @Override
+                    <span class="s0">public void </span>onNothingSelected(AdapterView&lt;?&gt; parent) {
+
+                    }
+                });
+            }
+
+            @Override
+            <span class="s0">public void </span>onCancelled(DatabaseError databaseError) {
+                Toast.makeText(AddTaskActivity.<span class="s0">this</span>, <span class="s3">&quot;&quot; </span>+ databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+
+
+    }
+    <span class="s0">public void </span>getTime(<span class="s0">final </span>EditText editText) {
+
+        <span class="s0">final </span>Calendar currentDate = Calendar.getInstance();
+        <span class="s0">final </span>Calendar date = Calendar.getInstance();
+        <span class="s0">final </span>DatePickerDialog datePickerDialog = <span class="s0">new </span>DatePickerDialog(AddTaskActivity.<span class="s0">this</span>, <span class="s0">new </span>DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            <span class="s0">public void </span>onDateSet(DatePicker datePicker, <span class="s0">int </span>year, <span class="s0">int </span>monthOfYear, <span class="s0">int </span>dayOfMonth) {
+
+                date.set(year, monthOfYear, dayOfMonth);
+                String myFormat = <span class="s3">&quot;dd-MM-yyyy&quot;</span>;<span class="s2">// HH:mm&quot;;</span>
+                SimpleDateFormat sdf = <span class="s0">new </span>SimpleDateFormat(myFormat, Locale.US);
+                editText.setText(sdf.format(date.getTime()));
+                editText.setError(<span class="s0">null</span>);
+
+            }
+        }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE));
+        editText.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            @Override
+            <span class="s0">public void </span>onClick(View v) {
+                <span class="s2">// TODO Auto-generated method stub</span>
+                datePickerDialog.show();
+            }
+        });
+        datePickerDialog.getDatePicker().setMinDate(currentDate.getTimeInMillis());
+
+    }
+
+}</pre>
+</body>
+</html>
